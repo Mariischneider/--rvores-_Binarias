@@ -1,12 +1,16 @@
 #include <iostream>
 #include <fstream>
-#include <cstdlib> // exit()
+#include <string> 
+#include <vector>
+#include <memory>
+
 
 using namespace std;
+
+
 
 int main()
 {
 
-    cout << "inicio" << endl;
-
+    
 }
