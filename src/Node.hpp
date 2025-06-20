@@ -7,6 +7,8 @@
 
 using namespace std;
 
+// Estrutura de no da arvore
+
 struct Node {
     std::string name;     
     std::string path;     
