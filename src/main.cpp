@@ -3,6 +3,7 @@
 #include <string> 
 #include <vector>
 #include <memory>
+#include "node.hpp"
 
 
 using namespace std;
