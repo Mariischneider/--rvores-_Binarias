@@ -1,5 +1,5 @@
 # -Arvores-_Binarias
-cd -- "--rvores-_Binarias"
+cd -- "-Arvores-_Binarias"
 
 
 g++ main.cpp FileSystem.cpp -o gerenciador
