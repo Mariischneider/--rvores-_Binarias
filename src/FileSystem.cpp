@@ -1,5 +1,7 @@
 #include "Node.hpp"
 #include <sys/stat.h> // stat 
+#include <dirent.h>   // opendir, readdir, closedir
+
 
 Node* buildTree(const std::string& path) {
     struct stat info;
@@ -16,6 +18,33 @@ Node* buildTree(const std::string& path) {
 
 
     Node* node = new Node(name, path, isDir, size);
+
+    //se for diretorio procura os filhos
+    if(isDir) {
+        DIR* dir = opendir(path.c_str());
+        if(!dir){
+            std::cerr << "Erro ao abrir diretorio: " << path << std::endl;
+            return node;
+        }
+
+        struct dirent* entry;
+        while((entry = readdir(dir)) != nullptr){
+            std::string entryName = entry->d_name;
+
+            //ignora . e ..
+            if(entryName == "." || entryName == "..")
+               continue;
+            std::string fullPath = path + "/" + entryName;
+
+            //chamada recursiva
+            Node* child = buildTree(fullPath);
+            if(child)
+               node->children.push_back(child);
+        }
+
+        closedir(dir);
+
+    }
 
     return node;
 
