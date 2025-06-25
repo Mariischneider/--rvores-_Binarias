@@ -173,6 +173,19 @@ void encontrarPastasComMaisFilhos(Node* node, size_t& maxFilhos, std::vector<Nod
    }
 }
 
+void listarPastasComMaisArquivos(Node* root) {
+   size_t maxFilhos = 0;
+   std::vector<Node*> pastas;
+   encontrarPastasComMaisFilhos(root, maxFilhos, pastas);
+
+
+   std::cout << "\nPasta(s) com mais arquivos (diretos):\n";
+   for (Node* pasta : pastas) {
+       std::cout << pasta->path << " (" << pasta->children.size() << " filhos, "
+                 << getTotalSize(pasta) << " bytes)\n";
+   }
+}
+
 
 int main()
 {
