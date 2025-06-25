@@ -119,6 +119,60 @@ void exibirMenu(Node* root){
     } while (opcao !=0); 
 }
 
+void encontrarMaioresArquivos(Node* node, size_t& maiorTamanho, std::vector<Node*>& maiores) {
+   if (!node) return;
+
+
+   if (!node->isDirectory) {
+       if (node->size > maiorTamanho) {
+           maiorTamanho = node->size;
+           maiores.clear();
+           maiores.push_back(node);
+       } else if (node->size == maiorTamanho) {
+           maiores.push_back(node);
+       }
+   }
+
+
+   for (Node* filho : node->children) {
+       encontrarMaioresArquivos(filho, maiorTamanho, maiores);
+   }
+}
+
+
+void listarMaioresArquivos(Node* root) {
+   size_t maiorTamanho = 0;
+   std::vector<Node*> maiores;
+   encontrarMaioresArquivos(root, maiorTamanho, maiores);
+
+
+   std::cout << "\nMaior(es) arquivo(s):\n";
+   for (Node* arq : maiores) {
+       std::cout << arq->path << " (" << arq->size << " bytes)\n";
+   }
+}
+
+
+// pastas com mais filhos
+void encontrarPastasComMaisFilhos(Node* node, size_t& maxFilhos, std::vector<Node*>& pastas) {
+   if (!node || !node->isDirectory) return;
+
+
+   size_t filhosDiretos = node->children.size();
+   if (filhosDiretos > maxFilhos) {
+       maxFilhos = filhosDiretos;
+       pastas.clear();
+       pastas.push_back(node);
+   } else if (filhosDiretos == maxFilhos && filhosDiretos > 0) {
+       pastas.push_back(node);
+   }
+
+
+   for (Node* filho : node->children) {
+       encontrarPastasComMaisFilhos(filho, maxFilhos, pastas);
+   }
+}
+
 
 int main()
 {
