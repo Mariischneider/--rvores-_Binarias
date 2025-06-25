@@ -152,7 +152,6 @@ void listarMaioresArquivos(Node* root) {
    }
 }
 
-
 // pastas com mais filhos
 void encontrarPastasComMaisFilhos(Node* node, size_t& maxFilhos, std::vector<Node*>& pastas) {
    if (!node || !node->isDirectory) return;
@@ -173,6 +172,7 @@ void encontrarPastasComMaisFilhos(Node* node, size_t& maxFilhos, std::vector<Nod
    }
 }
 
+//mais arquivos
 void listarPastasComMaisArquivos(Node* root) {
    size_t maxFilhos = 0;
    std::vector<Node*> pastas;
@@ -186,6 +186,7 @@ void listarPastasComMaisArquivos(Node* root) {
    }
 }
 
+//por extensao
 void buscarArquivosPorExtensao(Node* node, const std::string& extensao, std::vector<Node*>& encontrados) {
    if (!node) return;
 
@@ -200,6 +201,21 @@ void buscarArquivosPorExtensao(Node* node, const std::string& extensao, std::vec
 
    for (Node* filho : node->children) {
        buscarArquivosPorExtensao(filho, extensao, encontrados);
+   }
+}
+
+// as vazias
+void buscarPastasVazias(Node* node, std::vector<Node*>& vazias) {
+   if (!node || !node->isDirectory) return;
+
+
+   if (node->children.empty()) {
+       vazias.push_back(node);
+   }
+
+
+   for (Node* filho : node->children) {
+       buscarPastasVazias(filho, vazias);
    }
 }
 
