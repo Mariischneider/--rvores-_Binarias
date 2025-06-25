@@ -99,16 +99,20 @@ void exibirMenu(Node* root){
             break;
         }
         case 3:
+            listarArquivosMaioresQue(root);
             break;
         case 4:
+            listarPastasComMaisArquivos(root);
             break;
         case 5: {
             std::string ext;
             std::cout << "Digite a extensão (ex: .txt): ";
             std::cin >> ext;
+            listarArquivosPorExtensao(root,ext);
             break;
         }
         case 6:
+            listarPastasVazias(root);
             break;
         case 0:
             std::cout << "Encerrando...\n";
