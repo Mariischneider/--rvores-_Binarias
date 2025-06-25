@@ -186,6 +186,22 @@ void listarPastasComMaisArquivos(Node* root) {
    }
 }
 
+void buscarArquivosPorExtensao(Node* node, const std::string& extensao, std::vector<Node*>& encontrados) {
+   if (!node) return;
+
+
+   if (!node->isDirectory) {
+       if (node->name.size() >= extensao.size() &&
+           node->name.substr(node->name.size() - extensao.size()) == extensao) {
+           encontrados.push_back(node);
+       }
+   }
+
+
+   for (Node* filho : node->children) {
+       buscarArquivosPorExtensao(filho, extensao, encontrados);
+   }
+}
 
 int main()
 {
