@@ -219,6 +219,22 @@ void buscarPastasVazias(Node* node, std::vector<Node*>& vazias) {
    }
 }
 
+void listarPastasVazias(Node* root) {
+   std::vector<Node*> vazias;
+   buscarPastasVazias(root, vazias);
+
+
+   std::cout << "\nPastas vazias:\n";
+   for (Node* pasta : vazias) {
+       std::cout << pasta->path << "\n";
+   }
+
+
+   if (vazias.empty()) {
+       std::cout << "Nenhuma pasta vazia encontrada.\n";
+   }
+}
+
 int main()
 {
     std::string path;
