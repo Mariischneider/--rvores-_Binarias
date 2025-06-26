@@ -156,6 +156,22 @@ void buscarArquivosPorExtensao(Node* node, const std::string& extensao, std::vec
    }
 }
 
+void listarArquivosPorExtensao(Node* root, const std::string& extensao) {
+   std::vector<Node*> encontrados;
+   buscarArquivosPorExtensao(root, extensao, encontrados);
+
+
+   std::cout << "\nArquivos por extensão (" << extensao << "):\n";
+   for (Node* arq : encontrados) {
+       std::cout << arq->path << " (" << arq->size << " bytes)\n";
+   }
+
+
+   if (encontrados.empty()) {
+       std::cout << "Nenhum arquivo encontrado com a extensão " << extensao << ".\n";
+   }
+}
+
 // as vazias
 void buscarPastasVazias(Node* node, std::vector<Node*>& vazias) {
    if (!node || !node->isDirectory) return;
