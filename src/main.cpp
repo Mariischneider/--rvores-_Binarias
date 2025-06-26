@@ -99,7 +99,7 @@ void exibirMenu(Node* root){
             break;
         }
         case 3:
-            listarArquivosMaioresQue(root);
+            listarMaioresArquivos(root);
             break;
         case 4:
             listarPastasComMaisArquivos(root);
