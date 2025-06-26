@@ -71,58 +71,6 @@ void listarArquivosMaioresQue(Node* root, size_t N) {
     }
 }
 
-void exibirMenu(Node* root){
-    int opcao;
-    do{
-        std::cout << "\n===== MENU =====\n";
-        std::cout << "1. Exibir a árvore completa\n";
-        std::cout << "2. Listar arquivos com mais do que N bytes\n";
-        std::cout << "3. Mostrar maior arquivos(s)\n";
-        std::cout << "4. Pasta com mais arquivos diretamente\n";
-        std::cout << "5. Arquivos por extensão\n";
-        std::cout << "6. Pasta vazias\n";
-        std::cout << "0. Sair\n";
-        std::cout << "Escolha uma opção\n";
-        std::cin >> opcao;
-
-        switch (opcao)
-        {
-            case 1:
-            std::cout << "\nÁrvore de arquivos:\n";
-            printTree(root);
-            break;
-        case 2: {
-            size_t N;
-            std::cout << "Digite o valor N (em bytes): ";
-            std::cin >> N;
-            listarArquivosMaioresQue(root, N);
-            break;
-        }
-        case 3:
-            listarMaioresArquivos(root);
-            break;
-        case 4:
-            listarPastasComMaisArquivos(root);
-            break;
-        case 5: {
-            std::string ext;
-            std::cout << "Digite a extensão (ex: .txt): ";
-            std::cin >> ext;
-            listarArquivosPorExtensao(root,ext);
-            break;
-        }
-        case 6:
-            listarPastasVazias(root);
-            break;
-        case 0:
-            std::cout << "Encerrando...\n";
-            break;
-        default:
-            std::cout << "Opção inválida!\n";
-        }
-    } while (opcao !=0); 
-}
-
 void encontrarMaioresArquivos(Node* node, size_t& maiorTamanho, std::vector<Node*>& maiores) {
    if (!node) return;
 
@@ -237,6 +185,58 @@ void listarPastasVazias(Node* root) {
    if (vazias.empty()) {
        std::cout << "Nenhuma pasta vazia encontrada.\n";
    }
+}
+
+void exibirMenu(Node* root){
+    int opcao;
+    do{
+        std::cout << "\n===== MENU =====\n";
+        std::cout << "1. Exibir a árvore completa\n";
+        std::cout << "2. Listar arquivos com mais do que N bytes\n";
+        std::cout << "3. Mostrar maior arquivos(s)\n";
+        std::cout << "4. Pasta com mais arquivos diretamente\n";
+        std::cout << "5. Arquivos por extensão\n";
+        std::cout << "6. Pasta vazias\n";
+        std::cout << "0. Sair\n";
+        std::cout << "Escolha uma opção\n";
+        std::cin >> opcao;
+
+        switch (opcao)
+        {
+            case 1:
+            std::cout << "\nÁrvore de arquivos:\n";
+            printTree(root);
+            break;
+        case 2: {
+            size_t N;
+            std::cout << "Digite o valor N (em bytes): ";
+            std::cin >> N;
+            listarArquivosMaioresQue(root, N);
+            break;
+        }
+        case 3:
+            listarMaioresArquivos(root);
+            break;
+        case 4:
+            listarPastasComMaisArquivos(root);
+            break;
+        case 5: {
+            std::string ext;
+            std::cout << "Digite a extensão (ex: .txt): ";
+            std::cin >> ext;
+            listarArquivosPorExtensao(root,ext);
+            break;
+        }
+        case 6:
+            listarPastasVazias(root);
+            break;
+        case 0:
+            std::cout << "Encerrando...\n";
+            break;
+        default:
+            std::cout << "Opção inválida!\n";
+        }
+    } while (opcao !=0); 
 }
 
 int main()
